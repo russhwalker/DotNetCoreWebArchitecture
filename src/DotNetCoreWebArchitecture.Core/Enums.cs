@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DotNetCoreWebArchitecture.Common
+namespace DotNetCoreWebArchitecture.Core
 {
     public static class Enums
     {

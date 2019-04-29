@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DotNetCoreWebArchitecture.Common.Responses
+namespace DotNetCoreWebArchitecture.Core.Responses
 {
     public class GetWidgetCountsResponse
     {

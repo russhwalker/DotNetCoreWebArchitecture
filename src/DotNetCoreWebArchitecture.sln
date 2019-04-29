@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetCoreWebArchitecture.Web", "DotNetCoreWebArchitecture.Web\DotNetCoreWebArchitecture.Web.csproj", "{C7108564-9ED9-445F-BC55-3C83D5D3151D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCoreWebArchitecture.Web", "DotNetCoreWebArchitecture.Web\DotNetCoreWebArchitecture.Web.csproj", "{C7108564-9ED9-445F-BC55-3C83D5D3151D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetCoreWebArchitecture.Common", "DotNetCoreWebArchitecture.Common\DotNetCoreWebArchitecture.Common.csproj", "{22A8A478-54F0-4EA0-897E-06FCAB24716E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCoreWebArchitecture.Data", "DotNetCoreWebArchitecture.Data\DotNetCoreWebArchitecture.Data.csproj", "{E182BAE6-A4CC-4432-A1B8-67EFB39DE5F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetCoreWebArchitecture.Data", "DotNetCoreWebArchitecture.Data\DotNetCoreWebArchitecture.Data.csproj", "{E182BAE6-A4CC-4432-A1B8-67EFB39DE5F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCoreWebArchitecture.Service", "DotNetCoreWebArchitecture.Service\DotNetCoreWebArchitecture.Service.csproj", "{64D59DED-A659-48A8-9A69-8B08F527AC09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetCoreWebArchitecture.Service", "DotNetCoreWebArchitecture.Service\DotNetCoreWebArchitecture.Service.csproj", "{64D59DED-A659-48A8-9A69-8B08F527AC09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCoreWebArchitecture.Test", "DotNetCoreWebArchitecture.Test\DotNetCoreWebArchitecture.Test.csproj", "{3A9FC428-CCBF-404B-B7A5-EB522EF5A796}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetCoreWebArchitecture.Test", "DotNetCoreWebArchitecture.Test\DotNetCoreWebArchitecture.Test.csproj", "{3A9FC428-CCBF-404B-B7A5-EB522EF5A796}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetCoreWebArchitecture.Core", "DotNetCoreWebArchitecture.Core\DotNetCoreWebArchitecture.Core.csproj", "{81EC7AD5-F4E2-4007-BE19-6E1144D78838}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{C7108564-9ED9-445F-BC55-3C83D5D3151D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -38,18 +35,6 @@ Global
 		{C7108564-9ED9-445F-BC55-3C83D5D3151D}.Release|x64.Build.0 = Release|Any CPU
 		{C7108564-9ED9-445F-BC55-3C83D5D3151D}.Release|x86.ActiveCfg = Release|Any CPU
 		{C7108564-9ED9-445F-BC55-3C83D5D3151D}.Release|x86.Build.0 = Release|Any CPU
-		{22A8A478-54F0-4EA0-897E-06FCAB24716E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{22A8A478-54F0-4EA0-897E-06FCAB24716E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{22A8A478-54F0-4EA0-897E-06FCAB24716E}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{22A8A478-54F0-4EA0-897E-06FCAB24716E}.Debug|x64.Build.0 = Debug|Any CPU
-		{22A8A478-54F0-4EA0-897E-06FCAB24716E}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{22A8A478-54F0-4EA0-897E-06FCAB24716E}.Debug|x86.Build.0 = Debug|Any CPU
-		{22A8A478-54F0-4EA0-897E-06FCAB24716E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{22A8A478-54F0-4EA0-897E-06FCAB24716E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{22A8A478-54F0-4EA0-897E-06FCAB24716E}.Release|x64.ActiveCfg = Release|Any CPU
-		{22A8A478-54F0-4EA0-897E-06FCAB24716E}.Release|x64.Build.0 = Release|Any CPU
-		{22A8A478-54F0-4EA0-897E-06FCAB24716E}.Release|x86.ActiveCfg = Release|Any CPU
-		{22A8A478-54F0-4EA0-897E-06FCAB24716E}.Release|x86.Build.0 = Release|Any CPU
 		{E182BAE6-A4CC-4432-A1B8-67EFB39DE5F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E182BAE6-A4CC-4432-A1B8-67EFB39DE5F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E182BAE6-A4CC-4432-A1B8-67EFB39DE5F2}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -86,5 +71,23 @@ Global
 		{3A9FC428-CCBF-404B-B7A5-EB522EF5A796}.Release|x64.Build.0 = Release|Any CPU
 		{3A9FC428-CCBF-404B-B7A5-EB522EF5A796}.Release|x86.ActiveCfg = Release|Any CPU
 		{3A9FC428-CCBF-404B-B7A5-EB522EF5A796}.Release|x86.Build.0 = Release|Any CPU
+		{81EC7AD5-F4E2-4007-BE19-6E1144D78838}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81EC7AD5-F4E2-4007-BE19-6E1144D78838}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81EC7AD5-F4E2-4007-BE19-6E1144D78838}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{81EC7AD5-F4E2-4007-BE19-6E1144D78838}.Debug|x64.Build.0 = Debug|Any CPU
+		{81EC7AD5-F4E2-4007-BE19-6E1144D78838}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{81EC7AD5-F4E2-4007-BE19-6E1144D78838}.Debug|x86.Build.0 = Debug|Any CPU
+		{81EC7AD5-F4E2-4007-BE19-6E1144D78838}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81EC7AD5-F4E2-4007-BE19-6E1144D78838}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81EC7AD5-F4E2-4007-BE19-6E1144D78838}.Release|x64.ActiveCfg = Release|Any CPU
+		{81EC7AD5-F4E2-4007-BE19-6E1144D78838}.Release|x64.Build.0 = Release|Any CPU
+		{81EC7AD5-F4E2-4007-BE19-6E1144D78838}.Release|x86.ActiveCfg = Release|Any CPU
+		{81EC7AD5-F4E2-4007-BE19-6E1144D78838}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {89A80E6C-41AD-4FC3-A245-ECE0046D27E4}
 	EndGlobalSection
 EndGlobal

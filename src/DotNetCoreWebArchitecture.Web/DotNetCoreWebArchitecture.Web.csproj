@@ -11,9 +11,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DotNetCoreWebArchitecture.Common\DotNetCoreWebArchitecture.Common.csproj" />
+    <ProjectReference Include="..\DotNetCoreWebArchitecture.Core\DotNetCoreWebArchitecture.Core.csproj" />
     <ProjectReference Include="..\DotNetCoreWebArchitecture.Data\DotNetCoreWebArchitecture.Data.csproj" />
     <ProjectReference Include="..\DotNetCoreWebArchitecture.Service\DotNetCoreWebArchitecture.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\Widget\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
   </ItemGroup>
 
 </Project>

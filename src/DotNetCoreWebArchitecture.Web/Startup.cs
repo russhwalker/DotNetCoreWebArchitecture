@@ -30,8 +30,8 @@ namespace DotNetCoreWebArchitecture.Web
             });
 
             services.AddDbContext<Data.StoreContext>(opt => opt.UseInMemoryDatabase("Store"));
-            services.AddTransient<Common.Contracts.IWidgetService, Service.WidgetService>();
-            services.AddTransient<Common.Contracts.IWidgetRepository, Data.WidgetRepository>();
+            services.AddTransient<Core.Contracts.IWidgetService, Service.WidgetService>();
+            services.AddTransient<Core.Contracts.IWidgetRepository, Data.WidgetRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

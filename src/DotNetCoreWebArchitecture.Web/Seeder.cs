@@ -35,17 +35,17 @@ namespace DotNetCoreWebArchitecture.Web
         {
             var wt1 = new Data.WidgetType
             {
-                WidgetTypeId = (int)Common.Enums.WidgetType.Type1,
+                WidgetTypeId = (int)Core.Enums.WidgetType.Type1,
                 WidgetTypeName = "type1"
             };
             var wt2 = new Data.WidgetType
             {
-                WidgetTypeId = (int)Common.Enums.WidgetType.Type2,
+                WidgetTypeId = (int)Core.Enums.WidgetType.Type2,
                 WidgetTypeName = "type2"
             };
             var wt3 = new Data.WidgetType
             {
-                WidgetTypeId = (int)Common.Enums.WidgetType.Type3,
+                WidgetTypeId = (int)Core.Enums.WidgetType.Type3,
                 WidgetTypeName = "type3"
             };
             context.WidgetTypes.AddRange(new[] { wt1, wt2, wt3 });

@@ -2,7 +2,7 @@ using System;
 
 namespace DotNetCoreWebArchitecture.Web.Models
 {
-    public class MainViewModel
+    public class WidgetViewModel
     {
         public int Widget1Count { get; set; }
         public int Widget2Count { get; set; }

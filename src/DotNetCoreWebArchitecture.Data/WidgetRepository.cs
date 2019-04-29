@@ -1,4 +1,4 @@
-﻿using DotNetCoreWebArchitecture.Common.Contracts;
+﻿using DotNetCoreWebArchitecture.Core.Contracts;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -22,7 +22,7 @@ namespace DotNetCoreWebArchitecture.Data
             return db.Widgets.Count();
         }
 
-        public Task<int> GetWidgetCountAsync(Common.Enums.WidgetType widgetType)
+        public Task<int> GetWidgetCountAsync(Core.Enums.WidgetType widgetType)
         {
             return db.Widgets.Where(w => w.WidgetTypeId == (int)widgetType).CountAsync();
         }

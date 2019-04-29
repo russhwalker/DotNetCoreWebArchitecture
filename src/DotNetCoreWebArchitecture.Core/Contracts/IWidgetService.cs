@@ -1,9 +1,9 @@
-﻿using DotNetCoreWebArchitecture.Common.Responses;
+﻿using DotNetCoreWebArchitecture.Core.Responses;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DotNetCoreWebArchitecture.Common.Contracts
+namespace DotNetCoreWebArchitecture.Core.Contracts
 {
     public interface IWidgetService
     {

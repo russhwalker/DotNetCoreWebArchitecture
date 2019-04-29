@@ -1,9 +1,10 @@
-﻿using System;
+﻿using DotNetCoreWebArchitecture.Core;
+using DotNetCoreWebArchitecture.Core.Contracts;
+using DotNetCoreWebArchitecture.Core.Responses;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using DotNetCoreWebArchitecture.Common.Contracts;
-using DotNetCoreWebArchitecture.Common.Responses;
 
 namespace DotNetCoreWebArchitecture.Service
 {
@@ -18,9 +19,9 @@ namespace DotNetCoreWebArchitecture.Service
 
         public GetWidgetCountsResponse GetWidgetCounts()
         {
-            var count1Task = widgetRepository.GetWidgetCountAsync(Common.Enums.WidgetType.Type1);
-            var count2Task = widgetRepository.GetWidgetCountAsync(Common.Enums.WidgetType.Type2);
-            var count3Task = widgetRepository.GetWidgetCountAsync(Common.Enums.WidgetType.Type3);
+            var count1Task = widgetRepository.GetWidgetCountAsync(Enums.WidgetType.Type1);
+            var count2Task = widgetRepository.GetWidgetCountAsync(Enums.WidgetType.Type2);
+            var count3Task = widgetRepository.GetWidgetCountAsync(Enums.WidgetType.Type3);
             Task.WaitAll(count1Task, count2Task, count3Task);
             return new GetWidgetCountsResponse
             {

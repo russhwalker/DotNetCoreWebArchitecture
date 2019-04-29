@@ -12,4 +12,9 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DotNetCoreWebArchitecture.Core\DotNetCoreWebArchitecture.Core.csproj" />
+    <ProjectReference Include="..\DotNetCoreWebArchitecture.Service\DotNetCoreWebArchitecture.Service.csproj" />
+  </ItemGroup>
+
 </Project>
