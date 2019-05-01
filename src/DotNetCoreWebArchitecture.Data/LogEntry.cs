@@ -6,14 +6,14 @@ using System.Text;
 
 namespace DotNetCoreWebArchitecture.Data
 {
-    public class Order
+    public class LogEntry
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int OrderId { get; set; }
+        public int LogEntryId { get; set; }
 
-        public string CustomerName { get; set; }
-        public decimal TotalPrice { get; set; }
-
-        public virtual List<OrderItem> OrderItems { get; set; }
+        public string UserName { get; set; }
+        public string Url { get; set; }
+        public string RequestData { get; set; }
+        public DateTime CreatDate { get; set; }
     }
 }

@@ -4,7 +4,7 @@ namespace DotNetCoreWebArchitecture.Web
 {
     public static class Seeder
     {
-        public static void SeedData(Data.StoreContext context, int orderCount)
+        public static void SeedData(Data.DatabaseContext context, int orderCount)
         {
             context.Widgets.RemoveRange(context.Widgets);
             context.SaveChanges();
@@ -31,7 +31,7 @@ namespace DotNetCoreWebArchitecture.Web
             }
         }
 
-        public static void SeedTypeData(Data.StoreContext context)
+        public static void SeedTypeData(Data.DatabaseContext context)
         {
             var wt1 = new Data.WidgetType
             {

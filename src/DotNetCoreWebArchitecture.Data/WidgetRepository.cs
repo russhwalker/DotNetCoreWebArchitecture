@@ -1,35 +1,33 @@
 ﻿using DotNetCoreWebArchitecture.Core.Contracts;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DotNetCoreWebArchitecture.Data
 {
     public class WidgetRepository : IWidgetRepository
     {
-        private readonly StoreContext db;
+        private readonly DatabaseContext databaseContext;
 
-        public WidgetRepository(StoreContext myContext)
+        public WidgetRepository(DatabaseContext databaseContext)
         {
-            this.db = myContext;
+            this.databaseContext = databaseContext;
         }
 
         public int GetWidgetCount()
         {
-            return db.Widgets.Count();
+            return databaseContext.Widgets.Count();
         }
 
         public Task<int> GetWidgetCountAsync(Core.Enums.WidgetType widgetType)
         {
-            return db.Widgets.Where(w => w.WidgetTypeId == (int)widgetType).CountAsync();
+            return databaseContext.Widgets.Where(w => w.WidgetTypeId == (int)widgetType).CountAsync();
         }
 
         public Task<List<Widget>> GetWidgetsAsync(int widgetTypeId)
         {
-            return db.Widgets.Where(w => w.WidgetTypeId == widgetTypeId).ToListAsync();
+            return databaseContext.Widgets.Where(w => w.WidgetTypeId == widgetTypeId).ToListAsync();
         }
     }
 }

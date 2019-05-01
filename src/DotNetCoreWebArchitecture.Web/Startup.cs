@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -29,10 +24,13 @@ namespace DotNetCoreWebArchitecture.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<Data.StoreContext>(opt => opt.UseInMemoryDatabase("Store"));
+            services.AddDbContext<Data.DatabaseContext>(opt => opt.UseInMemoryDatabase("Store"));
             services.AddTransient<Core.Contracts.IWidgetService, Service.WidgetService>();
+            services.AddTransient<Core.Contracts.ILogService, Service.LogService>();
             services.AddTransient<Core.Contracts.IWidgetRepository, Data.WidgetRepository>();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddTransient<Core.Contracts.ILogRepository, Data.LogRepository>();
+            services.AddMvc(opt => opt.Filters.Add(typeof(Filters.AuditAttribute)))
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -49,7 +47,7 @@ namespace DotNetCoreWebArchitecture.Web
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            //app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -57,7 +55,7 @@ namespace DotNetCoreWebArchitecture.Web
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            var db = app.ApplicationServices.GetService<Data.StoreContext>();
+            var db = app.ApplicationServices.GetService<Data.DatabaseContext>();
             Seeder.SeedTypeData(db);
             Seeder.SeedData(db, 100);
         }

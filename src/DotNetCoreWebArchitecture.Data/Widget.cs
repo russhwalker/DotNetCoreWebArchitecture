@@ -17,6 +17,6 @@ namespace DotNetCoreWebArchitecture.Data
         public DateTime CreateDate { get; set; }
 
         public virtual WidgetType WidgetType { get; set; }
-        public virtual Order Order { get; set; }
+        public virtual List<OrderItem> OrderItems { get; set; }
     }
 }

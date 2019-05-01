@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using DotNetCoreWebArchitecture.Core.Contracts;
 using DotNetCoreWebArchitecture.Web.Models;
-using DotNetCoreWebArchitecture.Core.Contracts;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DotNetCoreWebArchitecture.Web.Controllers
 {
-    public class WidgetController : Controller
+    public class WidgetController : BaseController
     {
         private readonly IWidgetService widgetService;
 
@@ -19,6 +14,19 @@ namespace DotNetCoreWebArchitecture.Web.Controllers
         }
 
         public IActionResult Index()
+        {
+            var response = widgetService.GetWidgetCounts();
+            var viewModel = new WidgetViewModel
+            {
+                Widget1Count = response.Widget1Count,
+                Widget2Count = response.Widget2Count,
+                Widget3Count = response.Widget3Count
+            };
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Index(WidgetViewModel vm)
         {
             var response = widgetService.GetWidgetCounts();
             var viewModel = new WidgetViewModel
