@@ -20,6 +20,25 @@ namespace DotNetCoreWebArchitecture.Service
             this.widgetRepository = widgetRepository;
         }
 
+        public GetOrdersResponse GetOrders()
+        {
+            return new GetOrdersResponse
+            {
+                Orders = orderRepository.GetOrdersAsync().Result
+            };
+        }
 
+        public GetOrderResponse GetOrder(int orderId)
+        {
+            var orderTask = orderRepository.GetOrderAsync(orderId);
+            var orderItemsTask = orderRepository.GetOrderItemsAsync(orderId);
+
+            Task.WhenAll(orderTask, orderItemsTask);
+            return new GetOrderResponse
+            {
+                Order = orderTask.Result,
+                OrderItems = orderItemsTask.Result
+            };
+        }
     }
 }

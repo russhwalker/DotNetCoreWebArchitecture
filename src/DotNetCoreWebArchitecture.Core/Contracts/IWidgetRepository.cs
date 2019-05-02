@@ -8,7 +8,7 @@ namespace DotNetCoreWebArchitecture.Core.Contracts
     public interface IWidgetRepository
     {
         int GetWidgetCount();
-        Task<int> GetWidgetCountAsync(Enums.WidgetType widgetType);
+        //Task<int> GetWidgetCountAsync(Enums.WidgetType widgetType);
         //Task<List<Data.Widget>> GetWidgetsAsync(int widgetTypeId);
     }
 }

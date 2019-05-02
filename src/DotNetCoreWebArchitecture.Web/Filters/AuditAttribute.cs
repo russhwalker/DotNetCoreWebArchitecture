@@ -2,7 +2,6 @@
 using DotNetCoreWebArchitecture.Web.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Newtonsoft.Json;
-using System;
 using System.Linq;
 using System.Net;
 
@@ -37,7 +36,6 @@ namespace DotNetCoreWebArchitecture.Web.Filters
             }
 
             logService.AddLogEntry(logRequest);
-
             base.OnActionExecuting(context);
         }
     }

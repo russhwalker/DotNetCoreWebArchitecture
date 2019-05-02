@@ -25,8 +25,10 @@ namespace DotNetCoreWebArchitecture.Web
             });
 
             services.AddDbContext<Data.DatabaseContext>(opt => opt.UseInMemoryDatabase("Store"));
+            services.AddTransient<Core.Contracts.IOrderService, Service.OrderService>();
             services.AddTransient<Core.Contracts.IWidgetService, Service.WidgetService>();
             services.AddTransient<Core.Contracts.ILogService, Service.LogService>();
+            services.AddTransient<Core.Contracts.IOrderRepository, Data.OrderRepository>();
             services.AddTransient<Core.Contracts.IWidgetRepository, Data.WidgetRepository>();
             services.AddTransient<Core.Contracts.ILogRepository, Data.LogRepository>();
             services.AddMvc(opt => opt.Filters.Add(typeof(Filters.AuditAttribute)))
@@ -56,8 +58,7 @@ namespace DotNetCoreWebArchitecture.Web
             });
 
             var db = app.ApplicationServices.GetService<Data.DatabaseContext>();
-            Seeder.SeedTypeData(db);
-            Seeder.SeedData(db, 100);
+            TestDataSeeder.Seed(db, 20);
         }
     }
 }

@@ -5,6 +5,6 @@ namespace DotNetCoreWebArchitecture.Web.Models
 {
     public class OrdersViewModel
     {
-        public List<Data.Order> Orders { get; set; }
+        public List<Core.Models.Order> Orders { get; set; }
     }
 }

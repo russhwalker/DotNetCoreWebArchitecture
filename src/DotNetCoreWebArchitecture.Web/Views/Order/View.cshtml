@@ -1,0 +1,23 @@
+﻿@model DotNetCoreWebArchitecture.Web.Models.OrderViewModel
+<br />
+<div class="row">
+    <h2>Order</h2>
+
+</div>
+
+<div class="row">
+    <h2>Items</h2>
+    <table class="table table-condensed table-striped">
+        <tr>
+            <th>Widget</th>
+            <th>Price</th>
+        </tr>
+        @foreach (var order in Model.OrderItems)
+        {
+            <tr>
+                <td>@order.WidgetName</td>
+                <td>@order.UnitPrice</td>
+            </tr>
+        }
+    </table>
+</div>

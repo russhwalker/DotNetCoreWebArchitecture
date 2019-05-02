@@ -8,6 +8,7 @@ namespace DotNetCoreWebArchitecture.Core.Contracts
 {
     public interface IOrderService
     {
-
+        GetOrdersResponse GetOrders();
+        GetOrderResponse GetOrder(int orderId);
     }
 }

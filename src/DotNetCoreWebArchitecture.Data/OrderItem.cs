@@ -11,7 +11,7 @@ namespace DotNetCoreWebArchitecture.Data
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrderItemId { get; set; }
 
-        public string OrderId { get; set; }
+        public int OrderId { get; set; }
         public decimal UnitPrice { get; set; }
 
         public virtual Order Order { get; set; }

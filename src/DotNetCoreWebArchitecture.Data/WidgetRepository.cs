@@ -20,14 +20,14 @@ namespace DotNetCoreWebArchitecture.Data
             return databaseContext.Widgets.Count();
         }
 
-        public Task<int> GetWidgetCountAsync(Core.Enums.WidgetType widgetType)
-        {
-            return databaseContext.Widgets.Where(w => w.WidgetTypeId == (int)widgetType).CountAsync();
-        }
+        //public Task<int> GetWidgetCountAsync(Core.Enums.WidgetType widgetType)
+        //{
+        //    return databaseContext.Widgets.Where(w => w.WidgetTypeId == (int)widgetType).CountAsync();
+        //}
 
-        public Task<List<Widget>> GetWidgetsAsync(int widgetTypeId)
-        {
-            return databaseContext.Widgets.Where(w => w.WidgetTypeId == widgetTypeId).ToListAsync();
-        }
+        //public Task<List<Widget>> GetWidgetsAsync(int widgetTypeId)
+        //{
+        //    return databaseContext.Widgets.Where(w => w.WidgetTypeId == widgetTypeId).ToListAsync();
+        //}
     }
 }

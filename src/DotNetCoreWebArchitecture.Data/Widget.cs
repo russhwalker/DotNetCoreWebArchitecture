@@ -11,12 +11,8 @@ namespace DotNetCoreWebArchitecture.Data
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int WidgetId { get; set; }
 
-        public int WidgetTypeId { get; set; }
-        public int OrderId { get; set; }
         public string WidgetName { get; set; }
-        public DateTime CreateDate { get; set; }
-
-        public virtual WidgetType WidgetType { get; set; }
+        public decimal WidgetPrice { get; set; }
         public virtual List<OrderItem> OrderItems { get; set; }
     }
 }

@@ -6,11 +6,5 @@ namespace DotNetCoreWebArchitecture.Core
 {
     public static class Enums
     {
-        public enum WidgetType
-        {
-            Type1 = 1,
-            Type2 = 2,
-            Type3 = 3
-        }
     }
 }
