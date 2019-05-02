@@ -12,5 +12,6 @@ namespace DotNetCoreWebArchitecture.Core.Contracts
         Task<Models.Order> GetOrderAsync(int orderId);
         Task<List<Models.Order>> GetOrdersAsync();
         Task<List<Models.OrderItem>> GetOrderItemsAsync(int orderId);
+        Task<List<Models.OrderStatus>> GetOrderStatusesAsync();
     }
 }

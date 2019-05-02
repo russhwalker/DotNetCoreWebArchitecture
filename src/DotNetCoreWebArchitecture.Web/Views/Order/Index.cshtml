@@ -4,13 +4,15 @@
     <table class="table table-condensed table-striped">
         <tr>
             <th></th>
+            <th>Status</th>
             <th>Customer</th>
             <th>Order Item Count</th>
         </tr>
         @foreach (var order in Model.Orders)
         {
             <tr>
-                <td><a asp-action="View" asp-controller="Order" asp-route-id="@order.OrderId">View</a></td>
+                <td><a asp-action="Edit" asp-controller="Order" asp-route-id="@order.OrderId">View</a></td>
+                <td>@order.OrderStatusName</td>
                 <td>@order.CustomerName</td>
                 <td>@order.OrderItemCount</td>
             </tr>

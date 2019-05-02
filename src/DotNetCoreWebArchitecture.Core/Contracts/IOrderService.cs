@@ -10,5 +10,6 @@ namespace DotNetCoreWebArchitecture.Core.Contracts
     {
         GetOrdersResponse GetOrders();
         GetOrderResponse GetOrder(int orderId);
+        bool SaveOrder(Models.Order order);
     }
 }

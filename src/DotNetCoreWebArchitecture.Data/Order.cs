@@ -11,10 +11,10 @@ namespace DotNetCoreWebArchitecture.Data
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrderId { get; set; }
 
-        //public int OrderStatusId { get; set; }
+        public int OrderStatusId { get; set; }
         public string CustomerName { get; set; }
 
-        //public virtual OrderStatus OrderStatus { get; set; }
+        public virtual OrderStatus OrderStatus { get; set; }
         public virtual List<OrderItem> OrderItems { get; set; }
     }
 }

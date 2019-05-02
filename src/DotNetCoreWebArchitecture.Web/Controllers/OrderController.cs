@@ -29,15 +29,24 @@ namespace DotNetCoreWebArchitecture.Web.Controllers
             return null;
         }
 
-        public IActionResult View(int id)
+        public IActionResult Edit(int id, bool success = false)
         {
             var response = orderService.GetOrder(id);
             var viewModel = new OrderViewModel
             {
                 Order = response.Order,
-                OrderItems = response.OrderItems
+                OrderItems = response.OrderItems,
+                OrderStatuses = response.OrderStatuses,
+                Success = success
             };
             return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(OrderViewModel viewModel)
+        {
+            var response = orderService.SaveOrder(viewModel.Order);
+            return Edit(viewModel.Order.OrderId, response);
         }
     }
 }

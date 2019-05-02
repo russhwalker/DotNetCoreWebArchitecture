@@ -11,6 +11,28 @@ namespace DotNetCoreWebArchitecture.Web
             context.SaveChanges();
             var random = new Random();
 
+            context.OrderStatuses.AddRange(
+                new Data.OrderStatus
+                {
+                    OrderStatusId = (int)Core.Enums.OrderStatus.Ordered,
+                    StatusName = "Ordered"
+                },
+                new Data.OrderStatus
+                {
+                    OrderStatusId = (int)Core.Enums.OrderStatus.Shipped,
+                    StatusName = "Shipped"
+                },
+                new Data.OrderStatus
+                {
+                    OrderStatusId = (int)Core.Enums.OrderStatus.Canceled,
+                    StatusName = "Canceled"
+                },
+                new Data.OrderStatus
+                {
+                    OrderStatusId = (int)Core.Enums.OrderStatus.Refunded,
+                    StatusName = "Refunded"
+                }
+                );
             context.Widgets.AddRange(
                 new Data.Widget
                 {
@@ -44,10 +66,11 @@ namespace DotNetCoreWebArchitecture.Web
             {
                 var order = new Data.Order
                 {
-                    CustomerName = $"CustName{i + 1}"
+                    CustomerName = $"CustName{i + 1}",
+                    OrderStatusId = random.Next(1, 5)
                 };
                 context.Orders.Add(order);
-                for (int j = 0; j < random.Next(1, 3); j++)
+                for (int j = 0; j < random.Next(1, 10); j++)
                 {
                     var widgetId = random.Next(1, 6);
                     var widget = context.Widgets.Single(w => w.WidgetId == widgetId);

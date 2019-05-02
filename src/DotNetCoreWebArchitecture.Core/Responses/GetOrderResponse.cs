@@ -8,5 +8,6 @@ namespace DotNetCoreWebArchitecture.Core.Responses
     {
         public Models.Order Order { get; set; }
         public List<Models.OrderItem> OrderItems { get; set; }
+        public List<Models.OrderStatus> OrderStatuses { get; set; }
     }
 }

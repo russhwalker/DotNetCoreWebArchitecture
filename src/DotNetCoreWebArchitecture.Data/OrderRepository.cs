@@ -23,7 +23,9 @@ namespace DotNetCoreWebArchitecture.Data
                 {
                     OrderId = o.OrderId,
                     CustomerName = o.CustomerName,
-                    OrderItemCount = o.OrderItems.Count
+                    OrderItemCount = o.OrderItems.Count,
+                    OrderStatusId = o.OrderStatusId,
+                    OrderStatusName = o.OrderStatus.StatusName
                 }).SingleAsync();
         }
 
@@ -34,7 +36,9 @@ namespace DotNetCoreWebArchitecture.Data
                 {
                     OrderId = o.OrderId,
                     CustomerName = o.CustomerName,
-                    OrderItemCount = o.OrderItems.Count
+                    OrderItemCount = o.OrderItems.Count,
+                    OrderStatusId = o.OrderStatusId,
+                    OrderStatusName = o.OrderStatus.StatusName
                 }).ToListAsync();
         }
 
@@ -47,6 +51,16 @@ namespace DotNetCoreWebArchitecture.Data
                     OrderItemId = o.OrderItemId,
                     WidgetName = o.Widget.WidgetName,
                     UnitPrice = o.UnitPrice
+                }).ToListAsync();
+        }
+
+        public Task<List<Core.Models.OrderStatus>> GetOrderStatusesAsync()
+        {
+            return databaseContext.OrderStatuses
+                .Select(o => new Core.Models.OrderStatus
+                {
+                    OrderStatusId = o.OrderStatusId,
+                    StatusName = o.StatusName
                 }).ToListAsync();
         }
     }

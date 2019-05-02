@@ -12,8 +12,8 @@ namespace DotNetCoreWebArchitecture.Data
         }
 
         public DbSet<Widget> Widgets { get; set; }
-        public DbSet<WidgetType> WidgetTypes { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderStatus> OrderStatuses { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<LogEntry> LogEntries { get; set; }
     }

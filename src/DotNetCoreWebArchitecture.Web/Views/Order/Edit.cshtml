@@ -1,0 +1,47 @@
+﻿@model DotNetCoreWebArchitecture.Web.Models.OrderViewModel
+<br />
+<div class="row">
+    <h2>Order</h2>
+</div>
+
+<div class="row">
+    <form asp-action="Edit" asp-controller="Order" method="post">
+        <input type="hidden" asp-for="Order.OrderId" />
+        <div class="row">
+            <label asp-for="Order.CustomerName" class="control-label col-md-2">Customer Name</label>
+            <div class="col-md-3">
+                <input asp-for="Order.CustomerName" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <label asp-for="Order.OrderStatusId" class="control-label col-md-2">Order Status</label>
+            <div class="col-md-3">
+                <select asp-items="Model.OrderStatusSelectListItems" asp-for="Order.OrderStatusId" class="form-control"></select>
+            </div>
+        </div>
+        <div class="row">
+            <hr />
+            <a asp-action="Index" asp-controller="Order" class="btn btn-default">Cancel</a>
+            <button class="btn btn-primary" type="submit">Save</button>
+        </div>
+    </form>
+
+</div>
+
+<div class="row">
+    <hr />
+    <h2>Items</h2>
+    <table class="table table-condensed table-striped">
+        <tr>
+            <th>Widget</th>
+            <th>Price</th>
+        </tr>
+        @foreach (var order in Model.OrderItems)
+        {
+            <tr>
+                <td>@order.WidgetName</td>
+                <td>@order.UnitPrice</td>
+            </tr>
+        }
+    </table>
+</div>

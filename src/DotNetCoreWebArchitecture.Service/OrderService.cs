@@ -1,5 +1,6 @@
 ﻿using DotNetCoreWebArchitecture.Core;
 using DotNetCoreWebArchitecture.Core.Contracts;
+using DotNetCoreWebArchitecture.Core.Models;
 using DotNetCoreWebArchitecture.Core.Responses;
 using System;
 using System.Collections.Generic;
@@ -30,15 +31,23 @@ namespace DotNetCoreWebArchitecture.Service
 
         public GetOrderResponse GetOrder(int orderId)
         {
+            var orderStatusesTask = orderRepository.GetOrderStatusesAsync();
             var orderTask = orderRepository.GetOrderAsync(orderId);
             var orderItemsTask = orderRepository.GetOrderItemsAsync(orderId);
 
-            Task.WhenAll(orderTask, orderItemsTask);
+            Task.WhenAll(orderStatusesTask, orderTask, orderItemsTask);
             return new GetOrderResponse
             {
+                OrderStatuses = orderStatusesTask.Result,
                 Order = orderTask.Result,
                 OrderItems = orderItemsTask.Result
             };
+        }
+
+        public bool SaveOrder(Order order)
+        {
+
+            return true;
         }
     }
 }
