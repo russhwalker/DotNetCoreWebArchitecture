@@ -7,6 +7,6 @@ namespace DotNetCoreWebArchitecture.Core.Contracts
 {
     public interface ILogRepository
     {
-        bool AddLogEntry();
+        bool AddLogEntry(Models.ActionLog actionLog);
     }
 }

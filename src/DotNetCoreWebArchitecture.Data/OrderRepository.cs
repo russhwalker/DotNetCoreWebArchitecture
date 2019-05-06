@@ -1,4 +1,5 @@
 ﻿using DotNetCoreWebArchitecture.Core.Contracts;
+using DotNetCoreWebArchitecture.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace DotNetCoreWebArchitecture.Data
                     OrderItemCount = o.OrderItems.Count,
                     OrderStatusId = o.OrderStatusId,
                     OrderStatusName = o.OrderStatus.StatusName
-                }).SingleAsync();
+                }).SingleOrDefaultAsync();
         }
 
         public Task<List<Core.Models.Order>> GetOrdersAsync()
@@ -62,6 +63,16 @@ namespace DotNetCoreWebArchitecture.Data
                     OrderStatusId = o.OrderStatusId,
                     StatusName = o.StatusName
                 }).ToListAsync();
+        }
+
+        public Task<int> SaveOrderAsync(Core.Models.Order order)
+        {
+            //TODO mapping...Automapper?
+            var entity = databaseContext.Orders.Single(o => o.OrderId == order.OrderId);
+            entity.OrderStatusId = order.OrderStatusId;
+            entity.CustomerName = order.CustomerName;
+            databaseContext.Entry(entity).State = EntityState.Modified;
+            return databaseContext.SaveChangesAsync();
         }
     }
 }

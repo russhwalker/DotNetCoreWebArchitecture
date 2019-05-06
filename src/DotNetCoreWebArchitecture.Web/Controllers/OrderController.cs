@@ -23,17 +23,12 @@ namespace DotNetCoreWebArchitecture.Web.Controllers
             return View(viewModel);
         }
 
-        [HttpPost]
-        public IActionResult Index(OrdersViewModel vm)
-        {
-            return null;
-        }
-
         public IActionResult Edit(int id, bool success = false)
         {
             var response = orderService.GetOrder(id);
             var viewModel = new OrderViewModel
             {
+                IsNew = response.IsNew,
                 Order = response.Order,
                 OrderItems = response.OrderItems,
                 OrderStatuses = response.OrderStatuses,

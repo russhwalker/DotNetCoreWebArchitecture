@@ -15,11 +15,21 @@ namespace DotNetCoreWebArchitecture.Data
             this.databaseContext = databaseContext;
         }
 
-        public bool AddLogEntry()
+        public bool AddLogEntry(Core.Models.ActionLog actionLog)
         {
-            //databaseContext.LogEntries.Add(logEntry);
-            //return databaseContext.SaveChanges() > 0;
-            return false;
+            var logEntry = new LogEntry
+            {
+                UserName = actionLog.UserName,
+                Host = actionLog.Host,
+                IpAddress = actionLog.IpAddress,
+                ActionName = actionLog.ActionName,
+                ControllerName = actionLog.ControllerName,
+                RequestUrl = actionLog.RequestUrl,
+                FormRequestData = actionLog.FormRequestData,
+                CreateDate = actionLog.CreateDate
+            };
+            databaseContext.LogEntries.Add(logEntry);
+            return databaseContext.SaveChanges() > 0;
         }
     }
 }

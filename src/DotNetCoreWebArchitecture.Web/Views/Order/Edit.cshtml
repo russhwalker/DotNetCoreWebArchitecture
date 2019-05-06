@@ -1,7 +1,24 @@
 ﻿@model DotNetCoreWebArchitecture.Web.Models.OrderViewModel
-<br />
+
+@if (Model.Success)
+{
+    <br />
+    <div class="row">
+        <div class="col-md-6 col-md-offset-1">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    Success
+                </div>
+                <div class="panel-body panel-success">
+                    Changes successfully saved.
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
 <div class="row">
-    <h2>Order</h2>
+    <h1>Order</h1>
 </div>
 
 <div class="row">
@@ -25,23 +42,25 @@
             <button class="btn btn-primary" type="submit">Save</button>
         </div>
     </form>
-
 </div>
 
-<div class="row">
-    <hr />
-    <h2>Items</h2>
-    <table class="table table-condensed table-striped">
-        <tr>
-            <th>Widget</th>
-            <th>Price</th>
-        </tr>
-        @foreach (var order in Model.OrderItems)
-        {
+@if (!Model.IsNew)
+{
+    <div class="row">
+        <hr />
+        <h2>Items</h2>
+        <table class="table table-condensed table-striped">
             <tr>
-                <td>@order.WidgetName</td>
-                <td>@order.UnitPrice</td>
+                <th>Widget</th>
+                <th>Price</th>
             </tr>
-        }
-    </table>
-</div>
+            @foreach (var order in Model.OrderItems)
+            {
+                <tr>
+                    <td>@order.WidgetName</td>
+                    <td>@order.UnitPrice</td>
+                </tr>
+            }
+        </table>
+    </div>
+}

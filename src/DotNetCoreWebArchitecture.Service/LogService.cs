@@ -1,5 +1,7 @@
 ﻿using DotNetCoreWebArchitecture.Core.Contracts;
+using DotNetCoreWebArchitecture.Core.Models;
 using DotNetCoreWebArchitecture.Core.Requests;
+using System;
 
 namespace DotNetCoreWebArchitecture.Service
 {
@@ -14,8 +16,18 @@ namespace DotNetCoreWebArchitecture.Service
 
         public void AddLogEntry(AddLogRequest request)
         {
-            //var logEntry = new LogEntry
-            logRepository.AddLogEntry();
+            var log = new ActionLog
+            {
+                UserName = request.UserName,
+                Host = request.Host,
+                IpAddress = request.IpAddress,
+                ActionName = request.ActionName,
+                ControllerName = request.ControllerName,
+                RequestUrl = request.RequestUrl,
+                FormRequestData = request.FormRequestData,
+                CreateDate = DateTime.Now
+            };
+            logRepository.AddLogEntry(log);
         }
     }
 }
