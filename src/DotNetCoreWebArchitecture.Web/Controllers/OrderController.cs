@@ -1,7 +1,7 @@
 ﻿using DotNetCoreWebArchitecture.Core.Contracts;
+using DotNetCoreWebArchitecture.Web.Mappings;
 using DotNetCoreWebArchitecture.Web.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace DotNetCoreWebArchitecture.Web.Controllers
 {
@@ -16,24 +16,14 @@ namespace DotNetCoreWebArchitecture.Web.Controllers
 
         public IActionResult Index()
         {
-            var viewModel = new OrdersViewModel
-            {
-                Orders = orderService.GetOrders().Orders
-            };
+            var viewModel = orderService.GetOrders().ToViewModel();
             return View(viewModel);
         }
 
         public IActionResult Edit(int id, bool success = false)
         {
             var response = orderService.GetOrder(id);
-            var viewModel = new OrderViewModel
-            {
-                IsNew = response.IsNew,
-                Order = response.Order,
-                OrderItems = response.OrderItems,
-                OrderStatuses = response.OrderStatuses,
-                Success = success
-            };
+            var viewModel = response.ToViewModel(success);
             return View(viewModel);
         }
 
