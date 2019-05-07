@@ -10,7 +10,7 @@ namespace DotNetCoreWebArchitecture.Core.Contracts
     public interface IOrderRepository
     {
         Task<Models.Order> GetOrderAsync(int orderId);
-        Task<List<Models.Order>> GetOrdersAsync();
+        Task<List<Models.OrderRow>> GetOrderRowsAsync();
         Task<List<Models.OrderItem>> GetOrderItemsAsync(int orderId);
         Task<List<Models.OrderStatus>> GetOrderStatusesAsync();
         Task<int> SaveOrderAsync(Models.Order order);

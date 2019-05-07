@@ -14,17 +14,17 @@ namespace DotNetCoreWebArchitecture.Test.Service
         public void GetOrders()
         {
             var orderRepo = new Mock<IOrderRepository>();
-            orderRepo.Setup(r => r.GetOrdersAsync())
-                .ReturnsAsync(new List<Core.Models.Order>
+            orderRepo.Setup(r => r.GetOrderRowsAsync())
+                .ReturnsAsync(new List<Core.Models.OrderRow>
                 {
-                    new Core.Models.Order(),
-                    new Core.Models.Order()
+                    new Core.Models.OrderRow(),
+                    new Core.Models.OrderRow()
                 });
             var service = new OrderService(orderRepo.Object, null);
             var response = service.GetOrders();
             Assert.NotNull(response);
-            Assert.Equal(2, response.Orders.Count);
-            orderRepo.Verify(r => r.GetOrdersAsync(), Times.Once);
+            Assert.Equal(2, response.OrderRows.Count);
+            orderRepo.Verify(r => r.GetOrderRowsAsync(), Times.Once);
         }
 
         [Fact]

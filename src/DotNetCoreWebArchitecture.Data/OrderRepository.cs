@@ -1,5 +1,6 @@
-﻿using DotNetCoreWebArchitecture.Core.Contracts;
-using DotNetCoreWebArchitecture.Core.Models;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using DotNetCoreWebArchitecture.Core.Contracts;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,30 +11,26 @@ namespace DotNetCoreWebArchitecture.Data
     public class OrderRepository : IOrderRepository
     {
         private readonly DatabaseContext databaseContext;
+        private readonly IMapper mapper;
 
-        public OrderRepository(DatabaseContext databaseContext)
+        public OrderRepository(DatabaseContext databaseContext, IMapper mapper)
         {
             this.databaseContext = databaseContext;
+            this.mapper = mapper;
         }
 
         public Task<Core.Models.Order> GetOrderAsync(int orderId)
         {
             return databaseContext.Orders
                 .Where(o => o.OrderId == orderId)
-                .Select(o => new Core.Models.Order
-                {
-                    OrderId = o.OrderId,
-                    CustomerName = o.CustomerName,
-                    OrderItemCount = o.OrderItems.Count,
-                    OrderStatusId = o.OrderStatusId,
-                    OrderStatusName = o.OrderStatus.StatusName
-                }).SingleOrDefaultAsync();
+                .ProjectTo<Core.Models.Order>()
+                .SingleOrDefaultAsync();
         }
 
-        public Task<List<Core.Models.Order>> GetOrdersAsync()
+        public Task<List<Core.Models.OrderRow>> GetOrderRowsAsync()
         {
             return databaseContext.Orders.
-                Select(o => new Core.Models.Order
+                Select(o => new Core.Models.OrderRow
                 {
                     OrderId = o.OrderId,
                     CustomerName = o.CustomerName,
@@ -58,19 +55,13 @@ namespace DotNetCoreWebArchitecture.Data
         public Task<List<Core.Models.OrderStatus>> GetOrderStatusesAsync()
         {
             return databaseContext.OrderStatuses
-                .Select(o => new Core.Models.OrderStatus
-                {
-                    OrderStatusId = o.OrderStatusId,
-                    StatusName = o.StatusName
-                }).ToListAsync();
+                .ProjectTo<Core.Models.OrderStatus>()
+                .ToListAsync();
         }
 
         public Task<int> SaveOrderAsync(Core.Models.Order order)
         {
-            //TODO mapping...Automapper?
-            var entity = databaseContext.Orders.Single(o => o.OrderId == order.OrderId);
-            entity.OrderStatusId = order.OrderStatusId;
-            entity.CustomerName = order.CustomerName;
+            var entity = mapper.Map<Order>(order);
             databaseContext.Entry(entity).State = EntityState.Modified;
             return databaseContext.SaveChangesAsync();
         }

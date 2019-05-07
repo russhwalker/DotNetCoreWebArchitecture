@@ -21,7 +21,7 @@ namespace DotNetCoreWebArchitecture.Service
         {
             return new GetOrdersResponse
             {
-                Orders = orderRepository.GetOrdersAsync().Result
+                OrderRows = orderRepository.GetOrderRowsAsync().Result
             };
         }
 

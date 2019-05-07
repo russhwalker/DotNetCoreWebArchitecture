@@ -13,7 +13,7 @@ namespace DotNetCoreWebArchitecture.Web.Mappings
         {
             return new OrdersViewModel
             {
-                Orders = response.Orders
+                OrderRows = response.OrderRows
             };
         }
 

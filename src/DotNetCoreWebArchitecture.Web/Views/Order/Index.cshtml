@@ -17,7 +17,7 @@
             <th>Customer</th>
             <th>Order Item Count</th>
         </tr>
-        @foreach (var order in Model.Orders)
+        @foreach (var order in Model.OrderRows)
         {
             <tr>
                 <td><a asp-action="Edit" asp-controller="Order" asp-route-id="@order.OrderId">View</a></td>

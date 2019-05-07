@@ -6,6 +6,6 @@ namespace DotNetCoreWebArchitecture.Core.Responses
 {
     public class GetOrdersResponse
     {
-        public List<Models.Order> Orders { get; set; }
+        public List<Models.OrderRow> OrderRows { get; set; }
     }
 }
