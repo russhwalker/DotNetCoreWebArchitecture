@@ -26,16 +26,19 @@ namespace DotNetCoreWebArchitecture.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<Data.DatabaseContext>(opt => opt.UseInMemoryDatabase("Store"));
+            services.AddDbContext<Data.DatabaseContext>(opt => opt.UseInMemoryDatabase("StoreDatabase"));
             services.AddTransient<Core.Contracts.IOrderService, Service.OrderService>();
             services.AddTransient<Core.Contracts.IWidgetService, Service.WidgetService>();
             services.AddTransient<Core.Contracts.ILogService, Service.LogService>();
             services.AddTransient<Core.Contracts.IOrderRepository, Data.OrderRepository>();
             services.AddTransient<Core.Contracts.IWidgetRepository, Data.WidgetRepository>();
             services.AddTransient<Core.Contracts.ILogRepository, Data.LogRepository>();
+
+            //Auditing
             services.AddMvc(opt => opt.Filters.Add(typeof(Filters.AuditAttribute)))
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            //Automapper
             Mapper.Initialize(cfg => cfg.AddProfile<MappingProfile>());
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
