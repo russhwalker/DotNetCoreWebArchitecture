@@ -11,6 +11,7 @@ namespace DotNetCoreWebArchitecture.Data
         {
         }
 
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Widget> Widgets { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderStatus> OrderStatuses { get; set; }
