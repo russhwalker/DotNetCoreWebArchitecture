@@ -50,33 +50,37 @@ namespace DotNetCoreWebArchitecture.Web
             Mapper.Initialize(cfg => cfg.AddProfile<MappingProfile>());
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-            services.AddIdentity<Data.ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<Data.DatabaseContext>()
-                .AddDefaultTokenProviders();
+            ////Authentication
+            //services.AddIdentity<Data.ApplicationUser, IdentityRole>()
+            //    .AddEntityFrameworkStores<Data.DatabaseContext>()
+            //    .AddDefaultTokenProviders();
 
-            services.AddAuthentication().AddGoogle(o =>
-            {
-                // Configure your auth keys, usually stored in Config or User Secrets
-                o.ClientId = "<yourid>";
-                o.ClientSecret = "<yoursecret>";
-                o.Scope.Add("https://www.googleapis.com/auth/plus.me");
-                o.ClaimActions.MapJsonKey(ClaimTypes.Gender, "gender");
-                o.SaveTokens = true;
-                o.Events.OnCreatingTicket = ctx =>
-                {
-                    var tokens = ctx.Properties.GetTokens() as List<AuthenticationToken>;
-                    tokens.Add(new AuthenticationToken() { Name = "TicketCreated", Value = DateTime.UtcNow.ToString() });
-                    ctx.Properties.StoreTokens(tokens);
-                    return Task.CompletedTask;
-                };
-            });
+            ////Google Authentication
+            //services.AddAuthentication().AddGoogle(o =>
+            //{
+            //    // Configure your auth keys, usually stored in Config or User Secrets
+            //    o.ClientId = "<yourid>";
+            //    o.ClientSecret = "<yoursecret>";
+            //    o.Scope.Add("https://www.googleapis.com/auth/plus.me");
+            //    o.ClaimActions.MapJsonKey(ClaimTypes.Gender, "gender");
+            //    o.SaveTokens = true;
+            //    o.Events.OnCreatingTicket = ctx =>
+            //    {
+            //        var tokens = ctx.Properties.GetTokens() as List<AuthenticationToken>;
+            //        tokens.Add(new AuthenticationToken() { Name = "TicketCreated", Value = DateTime.UtcNow.ToString() });
+            //        ctx.Properties.StoreTokens(tokens);
+            //        return Task.CompletedTask;
+            //    };
+            //});
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                //app.UseDeveloperExceptionPage();
+                app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
             }
             else
             {

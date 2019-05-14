@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace DotNetCoreWebArchitecture.Web.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public abstract class BaseController : Controller
     {
 

@@ -14,6 +14,25 @@ namespace DotNetCoreWebArchitecture.Web.Controllers
             this.signInManager = signInManager;
         }
 
+        public async Task<IActionResult> Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(Models.LoginViewModel viewModel)
+        {
+            //https://github.com/aspnet/AspNetCore/blob/release/2.2/src/Security/samples/Identity.ExternalClaims/Pages/Account/Login.cshtml.cs
+            var result = await signInManager.PasswordSignInAsync(viewModel.Email, viewModel.Password, viewModel.RememberMe, false);
+            if (result.Succeeded)
+            {
+                return RedirectToAction(nameof(HomeController.Index), "Home");
+            }
+            ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+            return View();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
