@@ -1,6 +1,6 @@
-﻿using AutoMapper.QueryableExtensions;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using DotNetCoreWebArchitecture.Core.Contracts;
-using DotNetCoreWebArchitecture.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,30 +12,22 @@ namespace DotNetCoreWebArchitecture.Data
     public class LogRepository : ILogRepository
     {
         private readonly DatabaseContext databaseContext;
+        private readonly IMapper mapper;
 
-        public LogRepository(DatabaseContext databaseContext)
+        public LogRepository(DatabaseContext databaseContext, IMapper mapper)
         {
             this.databaseContext = databaseContext;
+            this.mapper = mapper;
         }
 
-        public bool AddLogEntry(Core.Models.ActionLog actionLog)
+        public Task<int> AddLogEntryAsync(Core.Models.LogEntry logEntry)
         {
-            var logEntry = new LogEntry
-            {
-                UserName = actionLog.UserName,
-                Host = actionLog.Host,
-                IpAddress = actionLog.IpAddress,
-                ActionName = actionLog.ActionName,
-                ControllerName = actionLog.ControllerName,
-                RequestUrl = actionLog.RequestUrl,
-                FormRequestData = actionLog.FormRequestData,
-                CreateDate = actionLog.CreateDate
-            };
-            databaseContext.LogEntries.Add(logEntry);
-            return databaseContext.SaveChanges() > 0;
+            var entity = mapper.Map<LogEntry>(logEntry);
+            databaseContext.LogEntries.Add(entity);
+            return databaseContext.SaveChangesAsync();
         }
 
-        public bool AddErrorLogEntry(string exceptionData, DateTime date)
+        public Task<int> AddErrorLogEntryAsync(string exceptionData, DateTime date)
         {
             var logEntry = new ErrorLog
             {
@@ -43,12 +35,13 @@ namespace DotNetCoreWebArchitecture.Data
                 CreateDate = date
             };
             databaseContext.ErrorLogEntries.Add(logEntry);
-            return databaseContext.SaveChanges() > 0;
+            return databaseContext.SaveChangesAsync();
         }
 
         public Task<List<Core.Models.ErrorLog>> GetErrorLogsAsync()
         {
             return databaseContext.ErrorLogEntries
+                .OrderByDescending(l => l.CreateDate)
                 .ProjectTo<Core.Models.ErrorLog>()
                 .ToListAsync();
         }

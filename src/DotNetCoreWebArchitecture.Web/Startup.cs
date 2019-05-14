@@ -94,15 +94,11 @@ namespace DotNetCoreWebArchitecture.Web
             if (env.IsDevelopment())
             {
                 //app.UseDeveloperExceptionPage();
-                //app.UseExceptionHandler("/Home/Error");
-
-                //app.UseStatusCodePagesWithReExecute("/Home/Error");
-                //app.UseExceptionHandler("/Home/Error");
             }
             else
             {
-                //app.UseExceptionHandler("/Home/Error");
-                //app.UseHsts();
+                app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
             }
 
             app.UseHttpsRedirection();

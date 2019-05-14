@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DotNetCoreWebArchitecture.Core.Models
 {
-    public class ActionLog
+    public class LogEntry
     {
+        public int LogEntryId { get; set; }
         public string UserName { get; set; }
         public string Host { get; set; }
         public string IpAddress { get; set; }

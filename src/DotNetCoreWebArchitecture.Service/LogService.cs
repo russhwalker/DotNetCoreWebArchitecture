@@ -3,7 +3,6 @@ using DotNetCoreWebArchitecture.Core.Models;
 using DotNetCoreWebArchitecture.Core.Requests;
 using DotNetCoreWebArchitecture.Core.Responses;
 using System;
-using System.Collections.Generic;
 
 namespace DotNetCoreWebArchitecture.Service
 {
@@ -18,7 +17,7 @@ namespace DotNetCoreWebArchitecture.Service
 
         public void AddLogEntry(AddLogRequest request)
         {
-            var log = new ActionLog
+            var log = new LogEntry
             {
                 UserName = request.UserName,
                 Host = request.Host,
@@ -29,12 +28,12 @@ namespace DotNetCoreWebArchitecture.Service
                 FormRequestData = request.FormRequestData,
                 CreateDate = DateTime.Now
             };
-            logRepository.AddLogEntry(log);
+            _ = logRepository.AddLogEntryAsync(log).Result;
         }
 
         public void LogException(Exception exception)
         {
-            logRepository.AddErrorLogEntry(exception.ToString(), DateTime.Now);
+            _ = logRepository.AddErrorLogEntryAsync(exception.ToString(), DateTime.Now).Result;
         }
 
         public GetErrorLogsResponse GetErrorLogs()

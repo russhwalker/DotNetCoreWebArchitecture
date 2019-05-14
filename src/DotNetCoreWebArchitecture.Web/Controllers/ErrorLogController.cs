@@ -24,7 +24,7 @@ namespace DotNetCoreWebArchitecture.Web.Controllers
         [AllowAnonymous]
         public IActionResult ThrowError()
         {
-            throw new System.Exception("this is an intentional error thrown in Home/ThrowError");
+            throw new System.Exception("this is an intentional error thrown in ErrorLog/ThrowError");
         }
     }
 }
