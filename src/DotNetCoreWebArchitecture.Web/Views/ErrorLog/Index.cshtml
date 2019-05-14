@@ -1,0 +1,21 @@
+﻿@model DotNetCoreWebArchitecture.Web.Models.ErrorLogsViewModel
+<br />
+<div class="row">
+
+</div>
+<hr />
+<div class="row">
+    <table class="table table-condensed table-striped">
+        <tr>
+            <th>Date</th>
+            <th>Exception Data</th>
+        </tr>
+        @foreach (var error in Model.ErrorLogs)
+        {
+            <tr>
+                <td>@error.CreateDate</td>
+                <td>@error.ExceptionData</td>
+            </tr>
+        }
+    </table>
+</div>

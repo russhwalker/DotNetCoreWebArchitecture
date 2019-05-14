@@ -28,5 +28,13 @@ namespace DotNetCoreWebArchitecture.Web.Mappings
                 Success = success
             };
         }
+
+        public static ErrorLogsViewModel ToViewModel(this GetErrorLogsResponse response)
+        {
+            return new ErrorLogsViewModel
+            {
+                ErrorLogs = response.ErrorLogs
+            };
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using DotNetCoreWebArchitecture.Core.Requests;
+﻿using DotNetCoreWebArchitecture.Core.Models;
+using DotNetCoreWebArchitecture.Core.Requests;
 using DotNetCoreWebArchitecture.Core.Responses;
 using System;
 using System.Collections.Generic;
@@ -9,5 +10,7 @@ namespace DotNetCoreWebArchitecture.Core.Contracts
     public interface ILogService
     {
         void AddLogEntry(AddLogRequest request);
+        void LogException(Exception exception);
+        GetErrorLogsResponse GetErrorLogs();
     }
 }

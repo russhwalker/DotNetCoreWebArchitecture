@@ -1,7 +1,9 @@
 ﻿using DotNetCoreWebArchitecture.Core.Contracts;
 using DotNetCoreWebArchitecture.Core.Models;
 using DotNetCoreWebArchitecture.Core.Requests;
+using DotNetCoreWebArchitecture.Core.Responses;
 using System;
+using System.Collections.Generic;
 
 namespace DotNetCoreWebArchitecture.Service
 {
@@ -28,6 +30,19 @@ namespace DotNetCoreWebArchitecture.Service
                 CreateDate = DateTime.Now
             };
             logRepository.AddLogEntry(log);
+        }
+
+        public void LogException(Exception exception)
+        {
+            logRepository.AddErrorLogEntry(exception.ToString(), DateTime.Now);
+        }
+
+        public GetErrorLogsResponse GetErrorLogs()
+        {
+            return new GetErrorLogsResponse
+            {
+                ErrorLogs = logRepository.GetErrorLogsAsync().Result
+            };
         }
     }
 }

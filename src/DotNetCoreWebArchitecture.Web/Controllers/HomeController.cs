@@ -14,12 +14,6 @@ namespace DotNetCoreWebArchitecture.Web.Controllers
         }
 
         [AllowAnonymous]
-        public IActionResult ThrowError()
-        {
-            throw new System.Exception("this is an intentional error thrown in Home/ThrowError");
-        }
-
-        [AllowAnonymous]
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
