@@ -5,7 +5,7 @@ namespace DotNetCoreWebArchitecture.Web
 {
     public static class TestDataSeeder
     {
-        public static void Seed(Data.DatabaseContext context, int orderCount)
+        public static void Seed(Data.DatabaseContext context, int orderCount = 20)
         {
             context.Widgets.RemoveRange(context.Widgets);
             context.SaveChanges();
