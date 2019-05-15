@@ -15,25 +15,21 @@ namespace DotNetCoreWebArchitecture.Service
             this.logRepository = logRepository;
         }
 
-        public void AddLogEntry(AddLogRequest request)
+        public void AddLogEntry(LogEntry logEntry)
         {
-            var log = new LogEntry
-            {
-                UserName = request.UserName,
-                Host = request.Host,
-                IpAddress = request.IpAddress,
-                ActionName = request.ActionName,
-                ControllerName = request.ControllerName,
-                RequestUrl = request.RequestUrl,
-                FormRequestData = request.FormRequestData,
-                CreateDate = DateTime.Now
-            };
-            _ = logRepository.AddLogEntryAsync(log).Result;
+            logEntry.CreateDate = DateTime.Now;
+            _ = logRepository.AddLogEntryAsync(logEntry).Result;
         }
 
-        public void LogException(Exception exception)
+        public void LogError(Exception exception)
         {
-            _ = logRepository.AddErrorLogEntryAsync(exception.ToString(), DateTime.Now).Result;
+            var errorLog = new ErrorLog
+            {
+                CreateDate = DateTime.Now,
+                ErrorMessage = exception.Message,
+                ExceptionData = exception.ToString()
+            };
+            _ = logRepository.AddErrorLogEntryAsync(errorLog).Result;
         }
 
         public GetErrorLogsResponse GetErrorLogs()

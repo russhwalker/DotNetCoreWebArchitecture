@@ -20,7 +20,7 @@ namespace DotNetCoreWebArchitecture.Web.Filters
         {
             var baseController = (BaseController)context.Controller;
 
-            var logRequest = new Core.Requests.AddLogRequest
+            var logEntry = new Core.Models.LogEntry
             {
                 ControllerName = baseController.ControllerContext.ActionDescriptor.ControllerName,
                 ActionName = baseController.ControllerContext.ActionDescriptor.ActionName,
@@ -29,13 +29,13 @@ namespace DotNetCoreWebArchitecture.Web.Filters
                 UserName = baseController.User.Identity.Name
             };
 
-            logRequest.Host = Dns.GetHostEntry(logRequest.IpAddress)?.HostName?.Split('.')?.FirstOrDefault() ?? "(not found)";
+            logEntry.Host = Dns.GetHostEntry(logEntry.IpAddress)?.HostName?.Split('.')?.FirstOrDefault() ?? "(not found)";
             if (context.HttpContext.Request.HasFormContentType)
             {
-                logRequest.FormRequestData = JsonConvert.SerializeObject(context.HttpContext.Request.Form);
+                logEntry.FormRequestData = JsonConvert.SerializeObject(context.HttpContext.Request.Form);
             }
 
-            logService.AddLogEntry(logRequest);
+            logService.AddLogEntry(logEntry);
             base.OnActionExecuting(context);
         }
     }

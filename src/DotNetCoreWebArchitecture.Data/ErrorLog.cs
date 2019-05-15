@@ -9,6 +9,7 @@ namespace DotNetCoreWebArchitecture.Data
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ErrorLogId { get; set; }
 
+        public string ErrorMessage { get; set; }
         public string ExceptionData { get; set; }
         public DateTime CreateDate { get; set; }
     }

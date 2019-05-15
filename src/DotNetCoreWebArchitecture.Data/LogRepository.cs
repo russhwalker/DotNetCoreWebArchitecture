@@ -27,14 +27,10 @@ namespace DotNetCoreWebArchitecture.Data
             return databaseContext.SaveChangesAsync();
         }
 
-        public Task<int> AddErrorLogEntryAsync(string exceptionData, DateTime date)
+        public Task<int> AddErrorLogEntryAsync(Core.Models.ErrorLog errorLog)
         {
-            var logEntry = new ErrorLog
-            {
-                ExceptionData = exceptionData,
-                CreateDate = date
-            };
-            databaseContext.ErrorLogEntries.Add(logEntry);
+            var entity = mapper.Map<ErrorLog>(errorLog);
+            databaseContext.ErrorLogEntries.Add(entity);
             return databaseContext.SaveChangesAsync();
         }
 

@@ -29,7 +29,6 @@ namespace DotNetCoreWebArchitecture.Web
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.SetupExceptionHandling(env);
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             //app.UseAuthentication();

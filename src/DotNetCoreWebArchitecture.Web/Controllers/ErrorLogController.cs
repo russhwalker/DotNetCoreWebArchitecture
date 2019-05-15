@@ -26,5 +26,13 @@ namespace DotNetCoreWebArchitecture.Web.Controllers
         {
             throw new System.Exception("this is an intentional error thrown in ErrorLog/ThrowError");
         }
+
+        [AllowAnonymous]
+        public IActionResult ThrowNullRefError()
+        {
+            Core.Models.Order obj = null;
+            _ = obj.CustomerName;
+            return null;
+        }
     }
 }

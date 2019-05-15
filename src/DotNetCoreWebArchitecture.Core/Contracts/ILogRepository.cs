@@ -8,7 +8,7 @@ namespace DotNetCoreWebArchitecture.Core.Contracts
     public interface ILogRepository
     {
         Task<int> AddLogEntryAsync(Core.Models.LogEntry logEntry);
-        Task<int> AddErrorLogEntryAsync(string exceptionData, DateTime date);
+        Task<int> AddErrorLogEntryAsync(Models.ErrorLog errorLog);
         Task<List<Models.ErrorLog>> GetErrorLogsAsync();
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -77,17 +78,19 @@ namespace DotNetCoreWebArchitecture.Web
 
         public static void SetupExceptionHandling(this IApplicationBuilder app, IHostingEnvironment env)
         {
+            //TODO, while this works the redirect seems messy.
             app.UseExceptionHandler(a => a.Run(async context =>
-            {
-                var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();
-                var exception = exceptionHandlerPathFeature.Error;
+             {
+                 var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();
+                 var exception = exceptionHandlerPathFeature.Error;
 
-                var logService = app.ApplicationServices.GetService<Core.Contracts.ILogService>();
-                logService.LogException(exception);
-                //var result = JsonConvert.SerializeObject(new { error = exception });
-                //context.Response.ContentType = "application/json";
-                //await context.Response.WriteAsync(result);
-            }));
+                 var logService = app.ApplicationServices.GetService<Core.Contracts.ILogService>();
+                 logService.LogError(exception);
+                 //var result = JsonConvert.SerializeObject(new { error = exception });
+                 //context.Response.ContentType = "application/json";
+                 //await context.Response.WriteAsync(result);
+                 context.Response.Redirect("/Home/Error");
+             }));
 
             //if (env.IsDevelopment())
             //{

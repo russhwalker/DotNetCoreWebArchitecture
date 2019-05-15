@@ -9,8 +9,8 @@ namespace DotNetCoreWebArchitecture.Core.Contracts
 {
     public interface ILogService
     {
-        void AddLogEntry(AddLogRequest request);
-        void LogException(Exception exception);
+        void AddLogEntry(Models.LogEntry logEntry);
+        void LogError(Exception exception);
         GetErrorLogsResponse GetErrorLogs();
     }
 }
