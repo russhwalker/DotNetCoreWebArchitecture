@@ -1,0 +1,31 @@
+﻿@page
+@model DotNetCoreWebArchitecture.Web.Pages.Account.LoginModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <h1>Login</h1>
+</div>
+
+<div class="row">
+    <form method="post">
+        <div class="row">
+            <label asp-for="Email" class="control-label col-md-2">Email</label>
+            <div class="col-md-3">
+                <input asp-for="Email" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <label asp-for="Password" class="control-label col-md-2">Password</label>
+            <div class="col-md-3">
+                <input asp-for="Password" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <hr />
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+    </form>
+</div>
