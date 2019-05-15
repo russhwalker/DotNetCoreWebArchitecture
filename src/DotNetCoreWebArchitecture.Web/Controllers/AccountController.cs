@@ -24,7 +24,7 @@ namespace DotNetCoreWebArchitecture.Web.Controllers
         public async Task<IActionResult> Login(Models.LoginViewModel viewModel)
         {
             //https://github.com/aspnet/AspNetCore/blob/release/2.2/src/Security/samples/Identity.ExternalClaims/Pages/Account/Login.cshtml.cs
-            var result = await signInManager.PasswordSignInAsync(viewModel.Email, viewModel.Password, viewModel.RememberMe, false);
+            var result = await signInManager.PasswordSignInAsync(viewModel.Email, viewModel.Password, false, false);
             if (result.Succeeded)
             {
                 return RedirectToAction(nameof(HomeController.Index), "Home");

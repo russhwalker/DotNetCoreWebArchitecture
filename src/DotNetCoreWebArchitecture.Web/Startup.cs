@@ -23,7 +23,7 @@ namespace DotNetCoreWebArchitecture.Web
             services.SetupRepositories();
             services.SetupMVC();
             services.SetupAutomapper();
-            services.SetupGoogleAuthentication();
+            services.SetupAuthentication();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
